@@ -4,8 +4,53 @@ console.log("linked");
     Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data
         structures? */}
 
+function isUnique(str) {
+    // ES6 solution
+    // Set is a class constructor that takes an argument and returns an object consisting of its unique values
+    let setString = new Set(str);
+    // if the length of the string is not equal to the number of values in the string, return false
+    if (str.length != setString.size) {
+        console.log("false");
+        return false;
+    } else {
+        console.log("true");
+        return true;
+    }
+
+    // I believe this solution is O(n)
+    // The other solution would be to do a single pass through the string, and if the ith value of the string corresponds to any other value in the string, return false.
+
+}
+
+isUnique("abcdefg");
+isUnique("aabbccdd");
+
 {/* <1.2 Check Permutation
     Given two strings, write a method to decide if one is a permutation of the other.< */}
+
+function isPermutation(str1, str2) {
+    let obj1 = {};
+    let obj2 = {};
+    let splitStr1 = str1.split("");
+    let splitStr2 = str2.split("");
+    for (let val of splitStr1) {
+        obj1 = (obj1 || 0) + 1;
+    }
+    for (let val of splitStr2) {
+        obj2 = (obj2 || 0) + 1;
+    }
+    for (let key in obj1) {
+        if (obj1[key] !== obj2[key]) {
+            console.log("Not a permutation");
+            return false;
+        }
+    }
+    console.log("It's a permutation");
+    return true;
+    // create object of both of the strings
+    // if the keys in str1 have the same values as str2, return true
+    // else return false
+}
 
 {/* 1.3 URLify
     Write a method to replace all spaces in a string with '%20'. You may assume that the string has sufficient space
